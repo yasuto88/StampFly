@@ -134,3 +134,22 @@ Pairing is required when flying for the first time:
 
 ### Impact Stop Function
 - The motors automatically stop when a significant impact is detected.
+
+## ファイル構成
+各ソースファイルの主な役割は以下の通りです。
+
+| ファイル | 役割 |
+| --- | --- |
+| `src/main.cpp` | Arduino の `setup`/`loop` を定義し、機体の初期化と周期処理を呼び出します |
+| `src/flight_control.cpp` / `src/flight_control.hpp` | PID 制御やモータ PWM 出力など、飛行制御の中心となる処理を担当します |
+| `src/pid.cpp` / `src/pid.hpp` | PID コントローラおよび低速フィルタのクラス実装 |
+| `src/rc.cpp` / `src/rc.hpp` | ESP-NOW を用いた送信機からの入力受信とテレメトリ送信を行います |
+| `src/sensor.cpp` / `src/sensor.hpp` | IMU や ToF センサ、電圧計からのデータ取得と姿勢・高度推定を行います |
+| `src/imu.cpp` / `src/imu.hpp` | BMI270 IMU の初期化と取得用のラッパ関数 |
+| `src/tof.cpp` / `src/tof.hpp` | VL53 シリーズ距離センサの制御と距離取得処理 |
+| `src/alt_kalman.cpp` / `src/alt_kalman.hpp` | 高度・速度を推定するためのカルマンフィルタ |
+| `src/led.cpp` / `src/led.hpp` | 機体や ESP32 上の LED 表示制御 |
+| `src/telemetry.cpp` / `src/telemetry.hpp` | 取得したデータのログ・テレメトリ用パケット生成 |
+| `platformio.ini` | PlatformIO 用ボード設定および使用ライブラリの指定 |
+| `lib/` | AHRS や各種センサの外部ライブラリを配置 |
+
